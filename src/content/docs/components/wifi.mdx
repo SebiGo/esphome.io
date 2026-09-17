@@ -6,9 +6,13 @@ import APIRef from '@components/APIRef.astro';
 
 
 This core ESPHome component sets up WiFi connections to access points
-for you. You need to have a network configuration (either Wifi or Ethernet)
-or ESPHome will fail in the config validation stage. You also can't have both Wifi
-and Ethernet setup in same time (even if your ESP has both wired).
+for you. You need to have a network configuration (such as WiFi or [Ethernet](/components/ethernet/))
+or ESPHome will fail in the config validation stage.
+
+On ESP32 family devices, WiFi may be configured alongside [Ethernet](/components/ethernet/) in the same
+configuration; this requires a `network:` `priority:` list naming both interfaces — see
+[Multi-Interface Support](/components/network/#multi-interface-support) on the [Network](/components/network/)
+component. Using more than one network interface is not supported on other platforms.
 
 It's recommended to provide a static IP for your node, as it can
 dramatically improve connection times.
@@ -206,9 +210,9 @@ wifi:
 ## User Entered Credentials
 
 Some components such as [Captive Portal](/components/captive_portal/), [Improv Serial](/components/improv_serial/) and
-[Esp32 Improv](/components/esp32_improv/) enable the user to send and save Wi-Fi credentials to the device. Beginning in 2022.11.0,
-as long as no credentials are set in the config file, and firmware is uploaded without erasing
-the flash (via OTA), the device will keep the saved credentials.
+[Improv via BLE](/components/improv_ble/) enable the user to send and save Wi-Fi credentials to the device.
+Beginning in 2022.11.0, as long as no credentials are set in the config file, and firmware is uploaded without
+erasing the flash (via OTA), the device will keep the saved credentials.
 
 <span id="wifi-manual_ip"></span>
 
